@@ -27,7 +27,7 @@ const categories = [
   ];
   
 
-const Products = ({ match }) => {
+const Products = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const [currentPage, setCurrentPage] = useState(1);

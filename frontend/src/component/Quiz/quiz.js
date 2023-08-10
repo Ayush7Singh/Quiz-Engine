@@ -7,7 +7,10 @@ import { Navigate } from 'react-router-dom'
 
 const Quiz = () => {
 
-   
+   const questions=useSelector(state=>state)
+   useEffect(()=>{
+    console.log(questions);
+   })
 
    
     function onNext(){

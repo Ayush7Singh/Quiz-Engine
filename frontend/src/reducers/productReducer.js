@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+
 import {
   ALL_PRODUCT_FAIL,
   ALL_PRODUCT_REQUEST,
@@ -33,47 +33,61 @@ import {
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_RESET,
   CLEAR_ERRORS,
+  resetAllAction,
+  StartExamAction,
+  moveNextAction,
+  movePrevAction,
+  ALL_Question_REQUEST,
+  ALL_Question_FAIL,
 } from "../constants/productConstants";
 
-export const questionReducer = createSlice({
-  name: 'questions',
-  initialState : {
-      queue: [],
-      answers : [],
-      trace : 0
-  },
-  reducers : {
-      startExamAction : (state, action) => {
-          let { question, answers} = action.payload
-          return {
-              ...state,
-              queue : question,
-              answers
-          }
-      },
-      moveNextAction : (state) => {
-          return {
-              ...state,
-              trace : state.trace + 1
-          }
-      },
-      movePrevAction : (state) => {
-          return {
-              ...state,
-              trace : state.trace - 1
-          }
-      },
-      resetAllAction : () => {
-          return {
-              queue: [],
-              answers : [],
-              trace : 0
-          }
-      }
+export const questionReducer = (state = { questions: [] }, action) => {
+  switch (action.type) {
+    case  ALL_Question_REQUEST:
+      return {
+        loading: true,
+        questions: [],
+      };
+    case StartExamAction :
+      return {
+        loading: false,
+        questions : action.payload.questions,
+        answers:action.payload.answers,
+        trace:0,
+    };
+    case moveNextAction :
+      return {
+        ...state,
+        trace : state.trace + 1
+    };
+  case movePrevAction :
+    return {
+      ...state,
+      trace : state.trace - 1
+  };
+  case resetAllAction:
+    return {
+      products: []
   }
-})
+  case ALL_Question_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+  default:
+    return state;
+  }  
+}
 
-export const resultReducer=()=>{}
+export const resultReducer = (state = { result: [] }, action) => {
+
+  return {
+    ...state,
+    loading: true,
+  };
+  
+}
+
 
 
 export const productsReducer = (state = { products: [] }, action) => {

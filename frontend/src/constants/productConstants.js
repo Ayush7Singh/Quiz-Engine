@@ -2,6 +2,13 @@ export const ALL_PRODUCT_REQUEST = "ALL_PRODUCT_REQUEST";
 export const ALL_PRODUCT_SUCCESS = "ALL_PRODUCT_SUCCESS";
 export const ALL_PRODUCT_FAIL = "ALL_PRODUCT_FAIL";
 
+export const StartExamAction = "StartExamAction";
+export const moveNextAction = "moveNextAction";
+export const movePrevAction = "movePrevAction";
+export const resetAllAction = "resetAllAction";
+export const  ALL_Question_REQUEST = "ALL_Question_REQUEST";
+export const ALL_Question_FAIL = "ALL_Question_FAIL";
+
 export const ADMIN_PRODUCT_REQUEST = "ADMIN_PRODUCT_REQUEST";
 export const ADMIN_PRODUCT_SUCCESS = "ADMIN_PRODUCT_SUCCESS";
 export const ADMIN_PRODUCT_FAIL = "ADMIN_PRODUCT_FAIL";

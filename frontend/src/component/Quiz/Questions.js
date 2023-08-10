@@ -1,22 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import data from "../data.js";
+import { useAlert } from 'react-alert';
+import {getQuestions} from "../../actions/productAction.js"
+
 const Questions = () => {
-    const [checked, setChecked] = useState(undefined)
-const questions=data[0];
+
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const [checked, setChecked] = useState(undefined);
+
+    const {
+        questions,
+        loading,
+        answers,
+        trace,
+       
+      } = useSelector((state) => state.questions);
+    const ques=questions[trace];
+
     function onSelect(i){
         
         setChecked(i)
        
     }
+    useEffect(() => {
+        
+    
+        dispatch(getQuestions());
+      }, [dispatch]);
+    
     
   return (
     <div className='questions'>
-    <h2 className='text-light'>{questions?.question}</h2>
+    <h2 className='text-light'>{ques?.question}</h2>
 
-    <ul key={questions?.id}>
+    <ul key={ques?.id}>
         {
-            questions?.options.map((q, i) => (
+            ques?.options.map((q, i) => (
                 <li key={i}>
                     <input 
                         type="radio"

@@ -29,7 +29,32 @@ import {
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
   CLEAR_ERRORS,
+  resetAllAction,
+  StartExamAction,
+  moveNextAction,
+  movePrevAction,
+  ALL_Question_REQUEST,
+  ALL_Question_FAIL,
 } from "../constants/productConstants";
+
+//get all questions
+export const getQuestions =()=>async(dispatch)=>{
+  try{
+    dispatch({ type: ALL_Question_REQUEST });
+    
+    const { data } = await axios.get(`/api/v1/questions`);
+    dispatch({
+      type: StartExamAction,
+      payload: data,
+    });
+
+  }catch(error){
+    dispatch({
+      type: ALL_Question_FAIL,
+      payload: error,
+    });
+  }
+};
 
 // Get All Products
 export const getProduct =
