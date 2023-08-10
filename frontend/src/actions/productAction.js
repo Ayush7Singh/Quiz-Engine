@@ -56,6 +56,40 @@ export const getQuestions =()=>async(dispatch)=>{
   }
 };
 
+//go to next question
+export const MoveNextQuestion =()=>async(dispatch)=>{
+  try{
+   
+    dispatch({
+      type: moveNextAction,
+      
+    });
+
+  }catch(error){
+    dispatch({
+      type: ALL_Question_FAIL,
+      payload: error,
+    });
+  }
+};
+
+
+//go to prev question
+export const MovePrevQuestion =()=>async(dispatch)=>{
+  try{
+   
+    dispatch({
+      type: movePrevAction,
+      
+    });
+
+  }catch(error){
+    dispatch({
+      type: ALL_Question_FAIL,
+      payload: error,
+    });
+  }
+};
 // Get All Products
 export const getProduct =
   (keyword = "", currentPage = 1, price = [0, 2500000], category, ratings = 0) =>
